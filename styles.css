@@ -178,6 +178,17 @@ h2 {
   font-size: 0.78rem;
 }
 
+.legend-note {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.legend-note strong {
+  color: var(--text);
+}
+
 .dot {
   display: inline-block;
   width: 0.7rem;
@@ -286,6 +297,48 @@ h2 {
   border-radius: 50%;
   background: linear-gradient(180deg, var(--accent), #f0bf79);
   box-shadow: 0 0 0 0.22rem rgba(255, 139, 106, 0.12);
+}
+
+.context-box {
+  margin-top: 1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.context-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f0bf79;
+  font-weight: 700;
+}
+
+.force-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.force-list li {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.force-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.force-desc {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.4;
 }
 
 .timeline-buttons {
@@ -559,6 +612,11 @@ input[type="range"] {
     font-size: 0.88rem;
   }
 
+  .legend-note,
+  .force-desc {
+    font-size: 0.8rem;
+  }
+
   .legend,
   .timeline-button span {
     font-size: 0.74rem;
@@ -727,6 +785,11 @@ input[type="range"] {
   .intro-copy,
   .event-summary {
     font-size: 0.92rem;
+  }
+
+  .legend-note,
+  .force-desc {
+    font-size: 0.82rem;
   }
 }
 

@@ -25,6 +25,29 @@ const colors = {
   route: "#f5f0d4"
 };
 
+const sideGlossary = {
+  japan: {
+    label: "Japanese advances",
+    description:
+      "Shows Japanese attacks, occupations, or major forward positions as the empire expanded across China, Southeast Asia, and the Pacific."
+  },
+  china: {
+    label: "Chinese resistance",
+    description:
+      "Marks Chinese cities, fronts, or defensive positions resisting Japanese invasion during the war in China."
+  },
+  allied: {
+    label: "Allied counteroffensives",
+    description:
+      "Usually refers to US-led, British, Commonwealth, Dutch, Filipino, and other anti-Japanese forces pushing back against Japan."
+  },
+  soviet: {
+    label: "Soviet offensive",
+    description:
+      "Refers to the Soviet Union's August 1945 entry into the war against Japan, especially the invasion of Manchuria."
+  }
+};
+
 const events = [
   {
     dateLabel: "18 Sept 1931 - 1932",
@@ -630,6 +653,7 @@ const refs = {
   mapFocus: document.getElementById("mapFocus"),
   locationCount: document.getElementById("locationCount"),
   highlights: document.getElementById("highlights"),
+  forceDetails: document.getElementById("forceDetails"),
   stepLabel: document.getElementById("stepLabel")
 };
 
@@ -703,6 +727,39 @@ function renderHighlights(items) {
     const li = document.createElement("li");
     li.textContent = item;
     refs.highlights.appendChild(li);
+  });
+}
+
+function getEventSides(event) {
+  const order = ["japan", "china", "allied", "soviet"];
+  const seen = new Set();
+
+  event.locations.forEach((location) => {
+    seen.add(location.side);
+  });
+
+  event.routes.forEach((route) => {
+    seen.add(route.side);
+  });
+
+  return order.filter((side) => seen.has(side));
+}
+
+function renderForceDetails(event) {
+  refs.forceDetails.replaceChildren();
+
+  getEventSides(event).forEach((side) => {
+    const item = document.createElement("li");
+    const name = document.createElement("div");
+    const desc = document.createElement("div");
+
+    name.className = "force-name";
+    desc.className = "force-desc";
+    name.textContent = sideGlossary[side].label;
+    desc.textContent = sideGlossary[side].description;
+
+    item.append(name, desc);
+    refs.forceDetails.appendChild(item);
   });
 }
 
@@ -787,6 +844,7 @@ function update(index) {
   refs.stepLabel.textContent = `${event.title} (${event.dateLabel})`;
 
   renderHighlights(event.highlights);
+  renderForceDetails(event);
   updateTimelineState(index);
 
   layer.clearLayers();
