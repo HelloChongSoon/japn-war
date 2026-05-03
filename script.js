@@ -48,6 +48,53 @@ const sideGlossary = {
   }
 };
 
+const peopleGlossary = {
+  hirohito:
+    "Emperor of Japan during the war. He remained the head of state from the start of expansion through the surrender announcement in August 1945.",
+  tojo:
+    "Hideki Tojo was a senior army leader and later prime minister. He became one of the best-known faces of Japan's wartime government.",
+  kwantung:
+    "The Kwantung Army was the Japanese army formation in Manchuria. Its officers drove the 1931 seizure of Manchuria with limited civilian oversight.",
+  puyi:
+    "Puyi, the last Qing emperor, was installed by Japan as ruler of Manchukuo to legitimize the occupation.",
+  chiang:
+    "Chiang Kai-shek led the Nationalist government of China and remained one of Japan's main wartime opponents on the mainland.",
+  zhu:
+    "Zhu De was a leading commander of Communist Chinese forces resisting Japan in north and central China.",
+  nimitz:
+    "Chester W. Nimitz commanded US Pacific naval forces and helped direct the central Pacific counteroffensive.",
+  macarthur:
+    "Douglas MacArthur commanded major Allied operations in the Southwest Pacific and later oversaw the occupation of Japan.",
+  yamamoto:
+    "Isoroku Yamamoto planned the Pearl Harbor strike and commanded the Combined Fleet until 1943.",
+  yamashita:
+    "Tomoyuki Yamashita led Japanese campaigns in Malaya and Singapore and later commanded Japanese forces in the Philippines.",
+  percival:
+    "Arthur Percival was the British commander who surrendered Singapore in February 1942.",
+  spruance:
+    "Raymond Spruance commanded US carrier forces at Midway and later in the central Pacific.",
+  nagumo:
+    "Chuichi Nagumo commanded the Japanese carrier strike force at Pearl Harbor and Midway.",
+  hyakutake:
+    "Harukichi Hyakutake commanded Japanese ground forces in the Guadalcanal campaign.",
+  king:
+    "Ernest J. King was the US Chief of Naval Operations and a central figure in Allied Pacific strategy.",
+  kuribayashi:
+    "Tadamichi Kuribayashi commanded Japanese defenses on Iwo Jima.",
+  ushijima:
+    "Mitsuru Ushijima commanded Japanese defenses on Okinawa.",
+  truman:
+    "Harry S. Truman became US president in April 1945 and made the final American decisions at the end of the war.",
+  stalin:
+    "Joseph Stalin led the Soviet Union and approved the August 1945 offensive against Japan in Manchuria.",
+  suzuki:
+    "Kantaro Suzuki was Japan's prime minister in the final months of the war and headed the cabinet that accepted surrender.",
+  umezu:
+    "Yoshijiro Umezu, representing the Japanese Army, signed the Instrument of Surrender aboard USS Missouri.",
+  shigemitsu:
+    "Mamoru Shigemitsu, representing the Japanese government, signed the Instrument of Surrender on September 2, 1945."
+};
+
 const events = [
   {
     dateLabel: "18 Sept 1931 - 1932",
@@ -62,6 +109,7 @@ const events = [
       "By early 1932, major Manchurian centers had fallen and Japan installed Manchukuo under the former Qing emperor Puyi.",
       "The episode deepened Japan's international isolation and set the pattern for further expansion by force."
     ],
+    people: ["kwantung", "hirohito", "puyi"],
     locations: [
       {
         name: "Tokyo",
@@ -121,6 +169,7 @@ const events = [
       "Japanese forces fought a long and costly battle for Shanghai before advancing inland to Nanjing.",
       "The fall of Nanjing in December 1937 was followed by mass atrocities that became one of the defining crimes of the war in Asia."
     ],
+    people: ["hirohito", "chiang", "zhu"],
     locations: [
       {
         name: "Marco Polo Bridge",
@@ -180,6 +229,7 @@ const events = [
       "The Chinese government shifted inland to Chongqing, where it continued to resist despite bombing and blockade pressure.",
       "By 1940, Japan held major cities and rail corridors but still lacked the knockout victory it had expected."
     ],
+    people: ["chiang", "zhu", "hirohito"],
     locations: [
       {
         name: "Wuhan",
@@ -238,6 +288,7 @@ const events = [
       "Japanese forces also struck Hong Kong, the Philippines, Malaya, Guam, and Wake as part of a coordinated regional offensive.",
       "The speed of the opening blows shocked Allied commands and shifted the war from continental Asia into a vast maritime theater."
     ],
+    people: ["yamamoto", "tojo", "macarthur"],
     locations: [
       {
         name: "Pearl Harbor",
@@ -301,6 +352,7 @@ const events = [
       "Control of the Dutch East Indies brought access to oil while advances through Burma threatened Allied links to China.",
       "Yet the very size of the empire created long sea lanes and many vulnerable island positions."
     ],
+    people: ["yamashita", "percival", "tojo"],
     locations: [
       {
         name: "Singapore",
@@ -374,6 +426,7 @@ const events = [
       "American codebreaking and carrier aviation turned the operation into a devastating Japanese defeat.",
       "Midway did not end the war, but it narrowed Japan's offensive options and helped transfer initiative to the Allies."
     ],
+    people: ["spruance", "nimitz", "nagumo"],
     locations: [
       {
         name: "Midway Atoll",
@@ -413,6 +466,7 @@ const events = [
       "Repeated naval clashes and logistical strain bled both sides, but Japan could not replace losses as effectively as the United States.",
       "The campaign's outcome made Rabaul increasingly vulnerable and broke the aura of Japanese inevitability."
     ],
+    people: ["hyakutake", "nimitz", "king"],
     locations: [
       {
         name: "Guadalcanal",
@@ -463,6 +517,7 @@ const events = [
       "Control of the Marianas enabled new B-29 bomber bases against the Japanese home islands.",
       "The October 1944 Leyte landings opened the campaign to retake the Philippines and led to the Battle of Leyte Gulf."
     ],
+    people: ["macarthur", "nimitz", "tojo"],
     locations: [
       {
         name: "Saipan",
@@ -514,6 +569,7 @@ const events = [
       "Okinawa became the largest amphibious battle in the Pacific and revealed how costly an invasion of Japan might be.",
       "By mid-1945, Japan faced air attack, naval blockade, and shrinking capacity to move or supply its forces."
     ],
+    people: ["kuribayashi", "ushijima", "truman"],
     locations: [
       {
         name: "Iwo Jima",
@@ -566,6 +622,7 @@ const events = [
       "The Soviet Union declared war on Japan on August 8 and invaded Manchuria early on August 9, crushing Japanese forces there.",
       "The formal surrender ceremony aboard USS Missouri in Tokyo Bay on September 2, 1945 ended World War II."
     ],
+    people: ["hirohito", "suzuki", "stalin", "truman", "shigemitsu", "umezu"],
     locations: [
       {
         name: "Hiroshima",
@@ -654,6 +711,7 @@ const refs = {
   locationCount: document.getElementById("locationCount"),
   highlights: document.getElementById("highlights"),
   forceDetails: document.getElementById("forceDetails"),
+  peopleDetails: document.getElementById("peopleDetails"),
   stepLabel: document.getElementById("stepLabel")
 };
 
@@ -763,6 +821,55 @@ function renderForceDetails(event) {
   });
 }
 
+function renderPeopleDetails(event) {
+  refs.peopleDetails.replaceChildren();
+
+  (event.people || []).forEach((personKey) => {
+    const item = document.createElement("li");
+    const name = document.createElement("div");
+    const desc = document.createElement("div");
+
+    name.className = "force-name";
+    desc.className = "force-desc";
+    name.textContent = peopleGlossary[personKey]
+      ? personKey
+          .split("_")
+          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(" ")
+      : personKey;
+    desc.textContent = peopleGlossary[personKey] || "";
+
+    const displayNames = {
+      hirohito: "Emperor Hirohito",
+      tojo: "Hideki Tojo",
+      kwantung: "Kwantung Army officers",
+      puyi: "Puyi",
+      chiang: "Chiang Kai-shek",
+      zhu: "Zhu De",
+      nimitz: "Chester W. Nimitz",
+      macarthur: "Douglas MacArthur",
+      yamamoto: "Isoroku Yamamoto",
+      yamashita: "Tomoyuki Yamashita",
+      percival: "Arthur Percival",
+      spruance: "Raymond Spruance",
+      nagumo: "Chuichi Nagumo",
+      hyakutake: "Harukichi Hyakutake",
+      king: "Ernest J. King",
+      kuribayashi: "Tadamichi Kuribayashi",
+      ushijima: "Mitsuru Ushijima",
+      truman: "Harry S. Truman",
+      stalin: "Joseph Stalin",
+      suzuki: "Kantaro Suzuki",
+      umezu: "Yoshijiro Umezu",
+      shigemitsu: "Mamoru Shigemitsu"
+    };
+
+    name.textContent = displayNames[personKey] || name.textContent;
+    item.append(name, desc);
+    refs.peopleDetails.appendChild(item);
+  });
+}
+
 function updateTimelineState(index) {
   const buttons = timelineButtons.querySelectorAll(".timeline-button");
   buttons.forEach((button) => {
@@ -845,6 +952,7 @@ function update(index) {
 
   renderHighlights(event.highlights);
   renderForceDetails(event);
+  renderPeopleDetails(event);
   updateTimelineState(index);
 
   layer.clearLayers();
