@@ -610,10 +610,13 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const recenterBtn = document.getElementById("recenterBtn");
 const timelineButtons = document.getElementById("timelineButtons");
+const introPanel = document.querySelector(".intro-panel");
+const eventPanel = document.querySelector(".event-panel");
+const timelinePanel = document.querySelector(".timeline-panel");
 const overlayPanels = [
-  document.querySelector(".intro-panel"),
-  document.querySelector(".event-panel"),
-  document.querySelector(".timeline-panel")
+  introPanel,
+  eventPanel,
+  timelinePanel
 ].filter(Boolean);
 const controlsPanel = document.querySelector(".controls-panel");
 
@@ -714,9 +717,25 @@ function updateTimelineState(index) {
 
 function getMapPadding() {
   if (window.matchMedia("(max-width: 980px)").matches) {
+    const topPanels = [introPanel, timelinePanel].filter(
+      (panel) => panel && window.getComputedStyle(panel).display !== "none"
+    );
+    const topInset = topPanels.reduce((maxBottom, panel) => {
+      const rect = panel.getBoundingClientRect();
+      return Math.max(maxBottom, Math.round(rect.bottom) + 18);
+    }, 24);
+
+    const bottomPanels = [controlsPanel, eventPanel].filter(
+      (panel) => panel && window.getComputedStyle(panel).display !== "none"
+    );
+    const bottomInset = bottomPanels.reduce((maxInset, panel) => {
+      const rect = panel.getBoundingClientRect();
+      return Math.max(maxInset, Math.round(window.innerHeight - rect.top) + 18);
+    }, 24);
+
     return {
-      paddingTopLeft: [28, 28],
-      paddingBottomRight: [28, 28]
+      paddingTopLeft: [24, topInset],
+      paddingBottomRight: [24, bottomInset]
     };
   }
 
