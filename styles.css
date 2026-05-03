@@ -76,13 +76,15 @@ body {
   z-index: 400;
   display: grid;
   grid-template-columns: minmax(19rem, 28rem) minmax(16rem, 20rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   grid-template-areas:
     "intro timeline"
     "event timeline"
     "controls controls";
   gap: 1rem;
   padding: 1.2rem;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   align-content: start;
   pointer-events: none;
   width: min(100%, 96rem);
@@ -103,11 +105,15 @@ body {
 .intro-panel {
   grid-area: intro;
   padding: 1.4rem 1.5rem;
+  overflow: auto;
+  min-height: 0;
 }
 
 .event-panel {
   grid-area: event;
   padding: 1.4rem 1.5rem 1.2rem;
+  overflow: auto;
+  min-height: 0;
 }
 
 .timeline-panel {
@@ -116,6 +122,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  overflow: hidden;
 }
 
 .controls-panel {
@@ -141,15 +148,15 @@ h2 {
 
 h1 {
   margin: 0 0 0.65rem;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 0.92;
+  font-size: clamp(1.9rem, 4.1vw, 3rem);
+  line-height: 0.96;
   text-wrap: balance;
 }
 
 h2 {
   margin: 0;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  line-height: 0.96;
+  font-size: clamp(1.5rem, 2.25vw, 2.15rem);
+  line-height: 1;
   text-wrap: balance;
 }
 
@@ -157,17 +164,17 @@ h2 {
 .event-summary {
   margin: 0;
   color: var(--muted);
-  line-height: 1.65;
-  font-size: 0.98rem;
+  line-height: 1.55;
+  font-size: 0.95rem;
 }
 
 .legend {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
-  margin-top: 1.1rem;
+  margin-top: 0.95rem;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
 .dot {
@@ -226,13 +233,13 @@ h2 {
 .meta-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem 1rem;
-  margin: 1.15rem 0 0;
+  gap: 0.75rem 0.85rem;
+  margin: 0.95rem 0 0;
   padding: 0;
 }
 
 .meta-grid div {
-  padding: 0.85rem 0.95rem;
+  padding: 0.75rem 0.85rem;
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -253,18 +260,19 @@ h2 {
 }
 
 .highlight-list {
-  margin: 1rem 0 0;
+  margin: 0.85rem 0 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.55rem;
 }
 
 .highlight-list li {
   position: relative;
   padding-left: 1.2rem;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.45;
+  font-size: 0.92rem;
 }
 
 .highlight-list li::before {
@@ -329,7 +337,7 @@ input[type="range"]:focus-visible {
 }
 
 .timeline-button time {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #f0bf79;
@@ -337,14 +345,14 @@ input[type="range"]:focus-visible {
 }
 
 .timeline-button strong {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   margin-bottom: 0.2rem;
   overflow-wrap: anywhere;
 }
 
 .timeline-button span {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   line-height: 1.4;
 }
 
@@ -393,6 +401,7 @@ button:focus-visible {
   display: grid;
   gap: 0.2rem;
   color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .transport-copy strong {
@@ -497,6 +506,7 @@ input[type="range"] {
 
   .page-shell {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     grid-template-areas:
       "intro"
       "event"
@@ -504,10 +514,17 @@ input[type="range"] {
       "controls";
     padding: 0.85rem;
     width: 100%;
+    height: auto;
+    max-height: none;
   }
 
   .timeline-panel {
     max-height: min(40vh, 20rem);
+  }
+
+  .intro-panel,
+  .event-panel {
+    overflow: visible;
   }
 
   h1 {
