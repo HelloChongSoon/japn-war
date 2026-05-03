@@ -83,6 +83,7 @@ body {
   padding: 1.2rem;
   min-height: 100vh;
   align-content: start;
+  pointer-events: none;
 }
 
 .panel {
@@ -93,6 +94,7 @@ body {
   border: 1px solid var(--panel-border);
   box-shadow: var(--panel-shadow);
   border-radius: 1.5rem;
+  pointer-events: auto;
 }
 
 .intro-panel {
@@ -350,6 +352,7 @@ input[type="range"]:focus-visible {
 .button-row {
   display: flex;
   gap: 0.65rem;
+  flex-wrap: wrap;
 }
 
 button {
@@ -365,6 +368,12 @@ button {
   transition:
     transform 140ms ease,
     filter 140ms ease;
+}
+
+#recenterBtn {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 button:hover,
@@ -503,6 +512,6 @@ input[type="range"] {
 
   .button-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

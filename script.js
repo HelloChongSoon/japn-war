@@ -615,6 +615,7 @@ const slider = document.getElementById("slider");
 const playBtn = document.getElementById("playBtn");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
+const recenterBtn = document.getElementById("recenterBtn");
 const timelineButtons = document.getElementById("timelineButtons");
 
 const refs = {
@@ -733,9 +734,9 @@ function update(index) {
   event.routes.forEach(addRoute);
   event.locations.forEach(addLocationMarker);
 
-  map.fitBounds(event.view, {
-    animate: true,
-    duration: 0.8,
+  map.flyToBounds(event.view, {
+    duration: 1.35,
+    easeLinearity: 0.2,
     padding: [40, 40]
   });
 }
@@ -792,6 +793,11 @@ prevBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
   stopPlayback();
   update(Math.min(events.length - 1, currentIndex + 1));
+});
+
+recenterBtn.addEventListener("click", () => {
+  stopPlayback();
+  update(currentIndex);
 });
 
 document.addEventListener("keydown", (event) => {
