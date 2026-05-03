@@ -49,50 +49,116 @@ const sideGlossary = {
 };
 
 const peopleGlossary = {
-  hirohito:
-    "Emperor of Japan during the war. He remained the head of state from the start of expansion through the surrender announcement in August 1945.",
-  tojo:
-    "Hideki Tojo was a senior army leader and later prime minister. He became one of the best-known faces of Japan's wartime government.",
-  kwantung:
-    "The Kwantung Army was the Japanese army formation in Manchuria. Its officers drove the 1931 seizure of Manchuria with limited civilian oversight.",
-  puyi:
-    "Puyi, the last Qing emperor, was installed by Japan as ruler of Manchukuo to legitimize the occupation.",
-  chiang:
-    "Chiang Kai-shek led the Nationalist government of China and remained one of Japan's main wartime opponents on the mainland.",
-  zhu:
-    "Zhu De was a leading commander of Communist Chinese forces resisting Japan in north and central China.",
-  nimitz:
-    "Chester W. Nimitz commanded US Pacific naval forces and helped direct the central Pacific counteroffensive.",
-  macarthur:
-    "Douglas MacArthur commanded major Allied operations in the Southwest Pacific and later oversaw the occupation of Japan.",
-  yamamoto:
-    "Isoroku Yamamoto planned the Pearl Harbor strike and commanded the Combined Fleet until 1943.",
-  yamashita:
-    "Tomoyuki Yamashita led Japanese campaigns in Malaya and Singapore and later commanded Japanese forces in the Philippines.",
-  percival:
-    "Arthur Percival was the British commander who surrendered Singapore in February 1942.",
-  spruance:
-    "Raymond Spruance commanded US carrier forces at Midway and later in the central Pacific.",
-  nagumo:
-    "Chuichi Nagumo commanded the Japanese carrier strike force at Pearl Harbor and Midway.",
-  hyakutake:
-    "Harukichi Hyakutake commanded Japanese ground forces in the Guadalcanal campaign.",
-  king:
-    "Ernest J. King was the US Chief of Naval Operations and a central figure in Allied Pacific strategy.",
-  kuribayashi:
-    "Tadamichi Kuribayashi commanded Japanese defenses on Iwo Jima.",
-  ushijima:
-    "Mitsuru Ushijima commanded Japanese defenses on Okinawa.",
-  truman:
-    "Harry S. Truman became US president in April 1945 and made the final American decisions at the end of the war.",
-  stalin:
-    "Joseph Stalin led the Soviet Union and approved the August 1945 offensive against Japan in Manchuria.",
-  suzuki:
-    "Kantaro Suzuki was Japan's prime minister in the final months of the war and headed the cabinet that accepted surrender.",
-  umezu:
-    "Yoshijiro Umezu, representing the Japanese Army, signed the Instrument of Surrender aboard USS Missouri.",
-  shigemitsu:
-    "Mamoru Shigemitsu, representing the Japanese government, signed the Instrument of Surrender on September 2, 1945."
+  hirohito: {
+    name: "Emperor Hirohito",
+    description:
+      "Emperor of Japan during the war. He remained the head of state from the start of expansion through the surrender announcement in August 1945."
+  },
+  tojo: {
+    name: "Hideki Tojo",
+    description:
+      "Senior army leader and later prime minister. He became one of the best-known faces of Japan's wartime government."
+  },
+  kwantung: {
+    name: "Kwantung Army officers",
+    description:
+      "The Kwantung Army in Manchuria drove the 1931 seizure of Manchuria with limited civilian oversight."
+  },
+  puyi: {
+    name: "Puyi",
+    description:
+      "The last Qing emperor, installed by Japan as ruler of Manchukuo to legitimize the occupation."
+  },
+  chiang: {
+    name: "Chiang Kai-shek",
+    description:
+      "Leader of the Nationalist government of China and one of Japan's main wartime opponents on the mainland."
+  },
+  zhu: {
+    name: "Zhu De",
+    description:
+      "Leading commander of Communist Chinese forces resisting Japan in north and central China."
+  },
+  nimitz: {
+    name: "Chester W. Nimitz",
+    description:
+      "Commander of US Pacific naval forces who helped direct the central Pacific counteroffensive."
+  },
+  macarthur: {
+    name: "Douglas MacArthur",
+    description:
+      "Commander of major Allied operations in the Southwest Pacific and later overseer of occupied Japan."
+  },
+  yamamoto: {
+    name: "Isoroku Yamamoto",
+    description:
+      "Planner of the Pearl Harbor strike and commander of the Combined Fleet until 1943."
+  },
+  yamashita: {
+    name: "Tomoyuki Yamashita",
+    description:
+      "Commander in Malaya and Singapore, later a senior Japanese commander in the Philippines."
+  },
+  percival: {
+    name: "Arthur Percival",
+    description:
+      "British commander who surrendered Singapore in February 1942."
+  },
+  spruance: {
+    name: "Raymond Spruance",
+    description:
+      "US admiral who commanded carrier forces at Midway and later in the central Pacific."
+  },
+  nagumo: {
+    name: "Chuichi Nagumo",
+    description:
+      "Commander of the Japanese carrier strike force at Pearl Harbor and Midway."
+  },
+  hyakutake: {
+    name: "Harukichi Hyakutake",
+    description:
+      "Commander of Japanese ground forces in the Guadalcanal campaign."
+  },
+  king: {
+    name: "Ernest J. King",
+    description:
+      "US Chief of Naval Operations and a central figure in Allied Pacific strategy."
+  },
+  kuribayashi: {
+    name: "Tadamichi Kuribayashi",
+    description:
+      "Commander of Japanese defenses on Iwo Jima."
+  },
+  ushijima: {
+    name: "Mitsuru Ushijima",
+    description:
+      "Commander of Japanese defenses on Okinawa."
+  },
+  truman: {
+    name: "Harry S. Truman",
+    description:
+      "US president from April 1945 who made the final American decisions at the end of the war."
+  },
+  stalin: {
+    name: "Joseph Stalin",
+    description:
+      "Leader of the Soviet Union who approved the August 1945 offensive against Japan in Manchuria."
+  },
+  suzuki: {
+    name: "Kantaro Suzuki",
+    description:
+      "Japan's prime minister in the final months of the war and head of the cabinet that accepted surrender."
+  },
+  umezu: {
+    name: "Yoshijiro Umezu",
+    description:
+      "Representative of the Japanese Army who signed the Instrument of Surrender aboard USS Missouri."
+  },
+  shigemitsu: {
+    name: "Mamoru Shigemitsu",
+    description:
+      "Representative of the Japanese government who signed the Instrument of Surrender on September 2, 1945."
+  }
 };
 
 const events = [
@@ -709,6 +775,7 @@ const refs = {
   phase: document.getElementById("phase"),
   mapFocus: document.getElementById("mapFocus"),
   locationCount: document.getElementById("locationCount"),
+  peopleSummary: document.getElementById("peopleSummary"),
   highlights: document.getElementById("highlights"),
   forceDetails: document.getElementById("forceDetails"),
   peopleDetails: document.getElementById("peopleDetails"),
@@ -822,49 +889,41 @@ function renderForceDetails(event) {
 }
 
 function renderPeopleDetails(event) {
+  const people = (event.people || []).map((personKey) => ({
+    key: personKey,
+    ...peopleGlossary[personKey]
+  }));
+
+  refs.peopleSummary.textContent = people.length
+    ? people.map((person) => person.name).join(", ")
+    : "Not listed for this stop.";
+
   refs.peopleDetails.replaceChildren();
 
-  (event.people || []).forEach((personKey) => {
+  if (!people.length) {
     const item = document.createElement("li");
     const name = document.createElement("div");
     const desc = document.createElement("div");
 
     name.className = "force-name";
     desc.className = "force-desc";
-    name.textContent = peopleGlossary[personKey]
-      ? personKey
-          .split("_")
-          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-          .join(" ")
-      : personKey;
-    desc.textContent = peopleGlossary[personKey] || "";
+    name.textContent = "No key people listed";
+    desc.textContent = "This stop does not yet have named individuals attached.";
+    item.append(name, desc);
+    refs.peopleDetails.appendChild(item);
+    return;
+  }
 
-    const displayNames = {
-      hirohito: "Emperor Hirohito",
-      tojo: "Hideki Tojo",
-      kwantung: "Kwantung Army officers",
-      puyi: "Puyi",
-      chiang: "Chiang Kai-shek",
-      zhu: "Zhu De",
-      nimitz: "Chester W. Nimitz",
-      macarthur: "Douglas MacArthur",
-      yamamoto: "Isoroku Yamamoto",
-      yamashita: "Tomoyuki Yamashita",
-      percival: "Arthur Percival",
-      spruance: "Raymond Spruance",
-      nagumo: "Chuichi Nagumo",
-      hyakutake: "Harukichi Hyakutake",
-      king: "Ernest J. King",
-      kuribayashi: "Tadamichi Kuribayashi",
-      ushijima: "Mitsuru Ushijima",
-      truman: "Harry S. Truman",
-      stalin: "Joseph Stalin",
-      suzuki: "Kantaro Suzuki",
-      umezu: "Yoshijiro Umezu",
-      shigemitsu: "Mamoru Shigemitsu"
-    };
+  people.forEach((person) => {
+    const item = document.createElement("li");
+    const name = document.createElement("div");
+    const desc = document.createElement("div");
 
-    name.textContent = displayNames[personKey] || name.textContent;
+    name.className = "force-name";
+    desc.className = "force-desc";
+    name.textContent = person.name;
+    desc.textContent = person.description;
+
     item.append(name, desc);
     refs.peopleDetails.appendChild(item);
   });
