@@ -1,7 +1,11 @@
 const map = L.map("map", {
   zoomControl: false,
-  worldCopyJump: true,
-  minZoom: 2
+  minZoom: 2,
+  maxBounds: [
+    [-70, -180],
+    [85, 180]
+  ],
+  maxBoundsViscosity: 0.9
 }).setView([24, 126], 4);
 
 L.control.zoom({ position: "topright" }).addTo(map);
@@ -9,7 +13,8 @@ L.control.zoom({ position: "topright" }).addTo(map);
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap &copy; CARTO",
   maxZoom: 8,
-  subdomains: "abcd"
+  subdomains: "abcd",
+  noWrap: true
 }).addTo(map);
 
 const colors = {
@@ -245,21 +250,16 @@ const events = [
         side: "japan",
         points: [
           [35.6764, 139.65],
-          [38, 170],
-          [30, -172],
-          [21.3646, -157.95]
-        ]
-      },
-      {
-        side: "japan",
-        points: [
-          [35.6764, 139.65],
           [22.3193, 114.1694],
           [6.1254, 102.2381],
           [14.5995, 120.9842]
         ]
       }
     ],
+    camera: {
+      center: [20, 170],
+      zoom: 3
+    },
     view: [
       [-2, 92],
       [34, -145]
@@ -367,17 +367,11 @@ const events = [
         detail: "Carrier striking force that sought to overwhelm Midway and the US fleet."
       }
     ],
-    routes: [
-      {
-        side: "japan",
-        points: [
-          [35.6764, 139.65],
-          [39, 170],
-          [34, -178],
-          [28.2072, -177.3735]
-        ]
-      }
-    ],
+    routes: [],
+    camera: {
+      center: [28, 179],
+      zoom: 3
+    },
     view: [
       [18, 148],
       [38, -155]
@@ -473,7 +467,6 @@ const events = [
       {
         side: "allied",
         points: [
-          [28.2072, -177.3735],
           [15.1778, 145.75],
           [13.4443, 144.7937],
           [10.7202, 124.794]
@@ -617,6 +610,12 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const recenterBtn = document.getElementById("recenterBtn");
 const timelineButtons = document.getElementById("timelineButtons");
+const overlayPanels = [
+  document.querySelector(".intro-panel"),
+  document.querySelector(".event-panel"),
+  document.querySelector(".timeline-panel")
+].filter(Boolean);
+const controlsPanel = document.querySelector(".controls-panel");
 
 const refs = {
   dateLabel: document.getElementById("dateLabel"),
@@ -648,6 +647,7 @@ function createTimelineButtons() {
       <span>${event.phase}</span>
     `;
     button.addEventListener("click", () => {
+      button.blur();
       stopPlayback();
       update(index);
     });
@@ -712,6 +712,46 @@ function updateTimelineState(index) {
   });
 }
 
+function getMapPadding() {
+  if (window.matchMedia("(max-width: 980px)").matches) {
+    return {
+      paddingTopLeft: [28, 28],
+      paddingBottomRight: [28, 28]
+    };
+  }
+
+  const leftInset = overlayPanels.reduce((maxRight, panel) => {
+    const rect = panel.getBoundingClientRect();
+    return Math.max(maxRight, Math.round(rect.right) + 28);
+  }, 40);
+
+  const bottomInset = controlsPanel
+    ? Math.max(40, Math.round(window.innerHeight - controlsPanel.getBoundingClientRect().top) + 24)
+    : 40;
+
+  return {
+    paddingTopLeft: [leftInset, 36],
+    paddingBottomRight: [40, bottomInset]
+  };
+}
+
+function focusMap(event, animate = true) {
+  if (event.camera) {
+    map.flyTo(event.camera.center, event.camera.zoom, {
+      animate,
+      duration: animate ? 1.15 : 0.01,
+      easeLinearity: 0.2
+    });
+    return;
+  }
+
+  map.flyToBounds(event.view, {
+    duration: animate ? 1.15 : 0,
+    easeLinearity: 0.2,
+    ...getMapPadding()
+  });
+}
+
 function update(index) {
   const event = events[index];
   currentIndex = index;
@@ -734,11 +774,7 @@ function update(index) {
   event.routes.forEach(addRoute);
   event.locations.forEach(addLocationMarker);
 
-  map.flyToBounds(event.view, {
-    duration: 1.35,
-    easeLinearity: 0.2,
-    padding: [40, 40]
-  });
+  focusMap(event);
 }
 
 function stopPlayback() {
@@ -798,6 +834,15 @@ nextBtn.addEventListener("click", () => {
 recenterBtn.addEventListener("click", () => {
   stopPlayback();
   update(currentIndex);
+});
+
+let resizeTimer = null;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    focusMap(events[currentIndex], false);
+  }, 120);
 });
 
 document.addEventListener("keydown", (event) => {
